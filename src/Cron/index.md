@@ -4,15 +4,15 @@ nav:
   path: /components
 ---
 
-## Foo
+## Cron
 
 Demo:
 
 ```tsx
 import React from 'react';
-import { Foo } from 'dy-cron-js';
+import { Cron } from 'dy-cron-js';
 
-export default () => <Foo title="First Demo" />;
+export default () => <Cron />;
 ```
 
 More skills for writing demo: https://d.umijs.org/guide/demo-principle
