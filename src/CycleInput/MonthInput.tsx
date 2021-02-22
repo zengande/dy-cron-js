@@ -28,7 +28,7 @@ export default (props: MonthInputProps) => {
 
   const onDayOfMonthChange = (value: number) => {
     setDayOfMonth(value);
-    triggerChange({ hours: value });
+    triggerChange({ dayOfMonth: value });
   };
 
   const onHoursChange = (value: number) => {

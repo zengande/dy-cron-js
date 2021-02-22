@@ -43,7 +43,7 @@ export default (props: QuarterInputProps) => {
 
   const onDayOfMonthChange = (value: number) => {
     setDayOfMonth(value);
-    triggerChange({ hours: value });
+    triggerChange({ dayOfMonth: value });
   };
 
   const onHoursChange = (value: number) => {
