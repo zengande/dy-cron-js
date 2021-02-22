@@ -14,13 +14,33 @@ const cycles = [
   { label: '日', value: 'D' },
   { label: '周', value: 'W' },
   { label: '月', value: 'M' },
-  // { label: '季度', value: 'Q' },
+  { label: '季度', value: 'Q' },
 ];
 
+// interface CronValue {
+//   /**
+//    * cron 表达式
+//    */
+//   cron?: string;
+//   /**
+//    * 周期
+//    */
+//   cycle?: string;
+// }
+
 export interface CronProps {
+  /**
+   * 是否显示输入框
+   */
   displayInput?: boolean;
+  /**
+   * 值
+   */
   value?: string;
-  onChange?: (cron?: string) => void;
+  /**
+   * 当值改变时
+   */
+  onChange?: (value: string, cycle: string) => void;
 }
 
 export interface CronState {
@@ -81,11 +101,11 @@ export default class Cron extends React.PureComponent<CronProps, CronState> {
   }
 
   onValueChange(value: any) {
-    const { onChange } = this.props;
     const cron = util.generateCron(value);
     console.log('cron expression generated: ', cron);
     this.setState({ cron });
-    onChange && onChange(cron);
+
+    this.triggerChange(cron, this.state.cycle);
   }
 
   onCycleChanged(e: RadioChangeEvent) {
@@ -93,6 +113,13 @@ export default class Cron extends React.PureComponent<CronProps, CronState> {
     const cycle = e.target.value;
     const cron = util.generateRandomCron(cycle);
     this.setState({ cycle, cron });
+
+    this.triggerChange(cron, cycle);
+  }
+
+  triggerChange(cron: string, cycle: string) {
+    const { onChange } = this.props;
+    onChange && onChange(cron, cycle);
   }
 
   render() {

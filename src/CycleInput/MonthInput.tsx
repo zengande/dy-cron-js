@@ -17,12 +17,13 @@ interface MonthInputProps {
 
 export default (props: MonthInputProps) => {
   const { value, onChange } = props;
-  const [dayOfMonth, setDayOfMonth] = useState(value?.dayOfMonth || 0);
+  const [dayOfMonth, setDayOfMonth] = useState(value?.dayOfMonth || 1);
   const [hours, setHours] = useState(value?.hours || 0);
   const [minutes, setMinutes] = useState(value?.minutes || 0);
 
   const triggerChange = (value: MonthInputValue) => {
-    onChange && onChange(value);
+    onChange &&
+      onChange({ dayOfMonth, hours, minutes, ...props.value, ...value });
   };
 
   const onDayOfMonthChange = (value: number) => {

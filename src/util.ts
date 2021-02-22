@@ -5,7 +5,7 @@ export default {
   cronParser(cronExpression?: string) {
     console.log('cron: ', cronExpression);
     if (!cronExpression) {
-      return {};
+      return undefined;
     }
     const arr = cronExpression.split(' ');
     if (arr.length != 6) {
@@ -40,6 +40,14 @@ export default {
         // 日
         if (dayOfMonth === '*') {
           return { cycle: 'D', hours, minutes };
+        } else if (month.indexOf(',') > 0) {
+          return {
+            cycle: 'Q',
+            month,
+            dayOfMonth: Number.parseInt(dayOfMonth),
+            hours,
+            minutes,
+          };
         } else {
           // 月
           return {
@@ -65,6 +73,7 @@ export default {
     minutes?: number;
     dayOfWeek?: string;
     dayOfMonth?: number;
+    quarters?: string;
   }) {
     const { cycle } = value;
     if (cycle === 'H') {
@@ -97,6 +106,11 @@ export default {
         return `00 ${numeral(minutes).format('00')} ${numeral(hours).format(
           '00',
         )} ${dayOfMonth} * ?`;
+      } else if (cycle === 'Q') {
+        const { dayOfMonth, quarters } = value;
+        return `00 ${numeral(minutes).format('00')} ${numeral(hours).format(
+          '00',
+        )} ${dayOfMonth} ${quarters} ?`;
       } else {
         throw new Error('无效的周期');
       }
@@ -119,6 +133,10 @@ export default {
       return `00 ${numeral(randomInt(0, 59)).format('00')} ${numeral(
         randomInt(0, 23),
       ).format('00')} ${numeral(randomInt(1, 31)).format('00')} * ?`;
+    } else if (cycle === 'Q') {
+      return `00 ${numeral(randomInt(0, 59)).format('00')} ${numeral(
+        randomInt(0, 23),
+      ).format('00')} ${numeral(randomInt(1, 31)).format('00')} 3,6,9,12 ?`;
     }
     throw new Error('无效的周期');
   },

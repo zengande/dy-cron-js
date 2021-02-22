@@ -19,7 +19,7 @@ export default (props: DayInputProps) => {
   const [minutes, setMinutes] = useState(value?.minutes || 0);
 
   const triggerChange = (value: DayInputValue) => {
-    onChange && onChange({ hours, minutes, ...value, ...props.value });
+    onChange && onChange({ hours, minutes, ...props.value, ...value });
   };
 
   const onHoursChange = (value: number) => {

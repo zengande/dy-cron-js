@@ -32,7 +32,8 @@ export default (props: WeekInputProps) => {
   const [minutes, setMinutes] = useState(value?.minutes || 0);
 
   const triggerChange = (value: WeekInputValue) => {
-    onChange && onChange(value);
+    onChange &&
+      onChange({ dayOfWeek, hours, minutes, ...props.value, ...value });
   };
 
   const onDayOfWeekChange = (value: number | string) => {

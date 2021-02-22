@@ -14,15 +14,35 @@ import { Cron } from 'dy-cron-js';
 
 export default () => {
   const [cron, setCron] = useState('00 12 11-23/01 * * ?');
-  return <Cron value={cron} onChange={setCron} />;
+  return (
+    <Cron
+      value={cron}
+      onChange={value => {
+        console.log(value);
+        setCron(value.cron);
+      }}
+    />
+  );
 };
 ```
 
 显示输入框:
 
 ```tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { Cron } from 'dy-cron-js';
 
-export default () => <Cron value="00 43 10 ? * MON" displayInput={true} />;
+export default () => {
+  const [cron, setCron] = useState('00 43 10 ? * MON');
+  return (
+    <Cron
+      value={cron}
+      onChange={value => {
+        console.log(value);
+        setCron(value.cron);
+      }}
+      displayInput={true}
+    />
+  );
+};
 ```
