@@ -130,7 +130,11 @@ export default class Cron extends React.PureComponent<CronProps, CronState> {
         {displayInput && (
           <Input value={cron} style={{ marginBottom: '10px' }} />
         )}
-        <Radio.Group value={cycle} onChange={this.onCycleChanged.bind(this)}>
+        <Radio.Group
+          className={styles.cycles}
+          value={cycle}
+          onChange={this.onCycleChanged.bind(this)}
+        >
           {cycles.map(cycle => (
             <Radio key={cycle.value} value={cycle.value}>
               {cycle.label}
