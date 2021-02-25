@@ -1,7 +1,7 @@
 {
     "private": false,
     "name": "dy-cron-js",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "scripts": {
         "start": "dumi dev",
         "docs:build": "dumi build",
@@ -39,7 +39,6 @@
         "numeral": "^2.0.6"
     },
     "peerDependencies": {
-        "random-int": "^2.0.1",
         "react": "^16.12.0"
     },
     "devDependencies": {

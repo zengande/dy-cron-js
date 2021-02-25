@@ -1,5 +1,8 @@
 import numeral from 'numeral';
-import randomInt from 'random-int';
+
+const randomInt = function(minimum: number, maximum: number) {
+  return Math.floor(Math.random() * (maximum - minimum + 1) + minimum);
+};
 
 export default {
   cronParser(cronExpression?: string) {
