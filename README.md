@@ -1,6 +1,8 @@
 # 🌟 dy-cron-js
 
 <a href="https://www.npmjs.com/package/dy-cron-js"><img alt="npm" src="https://img.shields.io/npm/v/dy-cron-js"></a>
+![npm](https://img.shields.io/npm/dw/dy-cron-js)
+![GitHub](https://img.shields.io/github/license/zengande/dy-cron-js)
 
 React Cron 组件，根据周期（时、日、周、月、季度）选择生成 Cron 表达式，和从 Cron 表达式反解析到界面
 
