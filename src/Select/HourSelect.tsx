@@ -1,6 +1,5 @@
 import { Select } from 'antd';
 import React from 'react';
-import numeral from 'numeral';
 import NumberSelect from './NumberSelect';
 
 export default (props: {

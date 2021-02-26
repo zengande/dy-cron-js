@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './index.less';
 
 export interface FormLabelProps {
   label?: string;
@@ -13,16 +12,30 @@ export default class FormLabel extends React.PureComponent<FormLabelProps> {
 
     return (
       <div
-        style={{ display: inline ? 'inline-block' : 'block' }}
-        className={styles.container}
+        style={{
+          marginBottom: '8px',
+          display: inline ? 'inline-block' : 'block',
+        }}
       >
         {label && (
-          <span className={styles.label}>
+          <span style={{ fontSize: '14px', color: 'rgba(0, 0, 0, 0.85)' }}>
             {label.endsWith(':') ? label : label + ':'}
           </span>
         )}
-        <div className={styles.content}>{children}</div>
-        {suffix && <span className={styles.suffix}>{suffix}</span>}
+        <div
+          style={{
+            display: 'inline-block',
+            margin: '0px 8px',
+            minWidth: '84px',
+          }}
+        >
+          {children}
+        </div>
+        {suffix && (
+          <span style={{ fontSize: '14px', color: 'rgba(0, 0, 0, 0.85)' }}>
+            {suffix}
+          </span>
+        )}
       </div>
     );
   }

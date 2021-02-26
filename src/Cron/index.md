@@ -13,7 +13,7 @@ import React, { useState } from 'react';
 import { Cron } from 'dy-cron-js';
 
 export default () => {
-  const [cron, setCron] = useState('00 12 11-23/01 * * ?');
+  const [cron, setCron] = useState(undefined);
   return (
     <Cron
       value={cron}

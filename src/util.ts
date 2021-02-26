@@ -81,7 +81,12 @@ export default {
     const { cycle } = value;
     if (cycle === 'H') {
       const { intervalHours, startHours, startMinutes, endHours } = value;
-      if (intervalHours && startHours && startMinutes && endHours) {
+      if (
+        intervalHours != undefined &&
+        startHours != undefined &&
+        startMinutes != undefined &&
+        endHours != undefined
+      ) {
         return `00 ${numeral(startMinutes).format('00')} ${numeral(
           startHours,
         ).format('00')}-${numeral(endHours).format('00')}/${numeral(
@@ -92,30 +97,31 @@ export default {
       }
     } else {
       const { hours, minutes } = value;
-      if (!hours || !minutes) {
-        throw new Error('错误的参数');
-      }
-      if (cycle === 'D') {
-        return `00 ${numeral(minutes).format('00')} ${numeral(hours).format(
-          '00',
-        )} * * ?`;
-      } else if (cycle === 'W') {
-        const { dayOfWeek } = value;
-        return `00 ${numeral(minutes).format('00')} ${numeral(hours).format(
-          '00',
-        )} ? * ${dayOfWeek}`;
-      } else if (cycle === 'M') {
-        const { dayOfMonth } = value;
-        return `00 ${numeral(minutes).format('00')} ${numeral(hours).format(
-          '00',
-        )} ${dayOfMonth} * ?`;
-      } else if (cycle === 'Q') {
-        const { dayOfMonth, quarters } = value;
-        return `00 ${numeral(minutes).format('00')} ${numeral(hours).format(
-          '00',
-        )} ${dayOfMonth} ${quarters} ?`;
+      if (hours != undefined && minutes != undefined) {
+        if (cycle === 'D') {
+          return `00 ${numeral(minutes).format('00')} ${numeral(hours).format(
+            '00',
+          )} * * ?`;
+        } else if (cycle === 'W') {
+          const { dayOfWeek } = value;
+          return `00 ${numeral(minutes).format('00')} ${numeral(hours).format(
+            '00',
+          )} ? * ${dayOfWeek}`;
+        } else if (cycle === 'M') {
+          const { dayOfMonth } = value;
+          return `00 ${numeral(minutes).format('00')} ${numeral(hours).format(
+            '00',
+          )} ${dayOfMonth} * ?`;
+        } else if (cycle === 'Q') {
+          const { dayOfMonth, quarters } = value;
+          return `00 ${numeral(minutes).format('00')} ${numeral(hours).format(
+            '00',
+          )} ${dayOfMonth} ${quarters} ?`;
+        } else {
+          throw new Error('无效的周期');
+        }
       } else {
-        throw new Error('无效的周期');
+        throw new Error('错误的参数');
       }
     }
   },

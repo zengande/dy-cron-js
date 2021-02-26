@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './index.less';
 import { Radio, RadioChangeEvent, Input } from 'antd';
 import HourInput from '@/CycleInput/HourInput';
 import DayInput from '@/CycleInput/DayInput';
@@ -29,6 +28,10 @@ const cycles = [
 
 export interface CronProps {
   /**
+   * class
+   */
+  className?: string;
+  /**
    * 是否显示输入框
    */
   displayInput?: boolean;
@@ -51,10 +54,12 @@ export default class Cron extends React.PureComponent<CronProps, CronState> {
   constructor(props: CronProps) {
     super(props);
 
-    const cronParserResult = util.cronParser(props.value);
+    var cron = props.value || util.generateRandomCron(cycles[0].value);
+
+    const cronParserResult = util.cronParser(cron);
     this.state = {
       cycle: cronParserResult?.cycle || cycles[0].value,
-      cron: props.value,
+      cron: cron,
     };
   }
 
@@ -123,14 +128,14 @@ export default class Cron extends React.PureComponent<CronProps, CronState> {
 
   render() {
     let { cycle, cron } = this.state;
-    const { displayInput } = this.props;
+    const { displayInput, className } = this.props;
     return (
-      <div className={styles.container}>
+      <div className={className}>
         {displayInput && (
           <Input value={cron} style={{ marginBottom: '10px' }} />
         )}
         <Radio.Group
-          className={styles.cycles}
+          style={{ marginBottom: '8px' }}
           value={cycle}
           onChange={this.onCycleChanged.bind(this)}
         >
