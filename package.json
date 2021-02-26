@@ -1,7 +1,7 @@
 {
     "private": false,
     "name": "dy-cron-js",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "scripts": {
         "start": "dumi dev",
         "docs:build": "dumi build",
@@ -19,6 +19,10 @@
     "gitHooks": {
         "pre-commit": "lint-staged"
     },
+    "sideEffects": [
+        ".less",
+        ".css"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/zengande/dy-cron-js",
@@ -35,7 +39,7 @@
     "dependencies": {
         "@types/classnames": "^2.2.11",
         "@types/numeral": "^2.0.0",
-        "antd": "^4.12.3",
+        "antd": "^4.5.0",
         "numeral": "^2.0.6"
     },
     "peerDependencies": {

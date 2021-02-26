@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './index.less';
 import { Radio, RadioChangeEvent, Input } from 'antd';
-import RangeInput from '@/RangeInput';
 import HourInput from '@/CycleInput/HourInput';
 import DayInput from '@/CycleInput/DayInput';
 import WeekInput from '@/CycleInput/WeekInput';
