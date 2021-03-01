@@ -1,7 +1,7 @@
 ---
 nav:
-  title: Components
-  path: /components
+    title: Components
+    path: /components
 ---
 
 ## Cron
@@ -13,16 +13,16 @@ import React, { useState } from 'react';
 import { Cron } from 'dy-cron-js';
 
 export default () => {
-  const [cron, setCron] = useState(undefined);
-  return (
-    <Cron
-      value={cron}
-      onChange={value => {
-        console.log(value);
-        setCron(value.cron);
-      }}
-    />
-  );
+    const [cron, setCron] = useState(undefined);
+    return (
+        <Cron
+            value={cron}
+            onChange={value => {
+                console.log(value);
+                setCron(value.cron);
+            }}
+        />
+    );
 };
 ```
 
@@ -33,16 +33,19 @@ import React, { useState } from 'react';
 import { Cron } from 'dy-cron-js';
 
 export default () => {
-  const [cron, setCron] = useState('00 43 10 ? * MON');
-  return (
-    <Cron
-      value={cron}
-      onChange={value => {
-        console.log(value);
-        setCron(value.cron);
-      }}
-      displayInput={true}
-    />
-  );
+    const [value, SetValue] = useState({
+        cron: '00 43 10 ? * MON',
+        cycle: 'M',
+    });
+    return (
+        <Cron
+            value={value}
+            onChange={value => {
+                console.log(value);
+                SetValue(value);
+            }}
+            displayInput={true}
+        />
+    );
 };
 ```
