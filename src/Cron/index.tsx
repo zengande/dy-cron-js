@@ -53,7 +53,7 @@ export interface CronState {
     cron?: string;
 }
 
-export default class Cron extends React.PureComponent<CronProps, CronState> {
+export default class Cron extends React.Component<CronProps, CronState> {
     constructor(props: CronProps) {
         super(props);
 
@@ -134,6 +134,19 @@ export default class Cron extends React.PureComponent<CronProps, CronState> {
     triggerChange(cron: string, cycle: string) {
         const { onChange } = this.props;
         onChange && onChange({ cron, cycle });
+    }
+
+    componentWillReceiveProps(nextProps: CronProps) {
+        if (
+            nextProps.value &&
+            (nextProps.value?.cron != this.props.value?.cron ||
+                nextProps.value?.cycle != this.props.value?.cycle)
+        ) {
+            this.setState({
+                cron: nextProps.value.cron,
+                cycle: nextProps.value.cycle || 'H',
+            });
+        }
     }
 
     render() {
