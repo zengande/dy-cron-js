@@ -76,6 +76,7 @@ export default class Cron extends React.Component<CronProps, CronState> {
     renderCycleContent(cycle: string) {
         const { cron } = this.state;
         const cronParserResult = util.cronParser(cron);
+        console.log(cronParserResult);
         if (cycle === 'H') {
             return (
                 <HourInput

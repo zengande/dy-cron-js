@@ -17,7 +17,7 @@ interface MonthInputProps {
 
 export default (props: MonthInputProps) => {
     const { value, onChange } = props;
-    const { dayOfMonth, hours, minutes } = value || {};
+    const { dayOfMonth = 1, hours = 0, minutes = 0 } = value || {};
 
     const triggerChange = (value: MonthInputValue) => {
         onChange && onChange({ ...props.value, ...value });

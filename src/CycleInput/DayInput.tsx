@@ -15,7 +15,7 @@ interface DayInputProps {
 
 export default (props: DayInputProps) => {
     const { value, onChange } = props;
-    const { hours, minutes } = value || {};
+    const { hours = 0, minutes = 0 } = value || {};
 
     const triggerChange = (value: DayInputValue) => {
         onChange &&

@@ -9,7 +9,7 @@ interface QuarterInputValue {
     dayOfMonth?: number;
     hours?: number;
     minutes?: number;
-    quarters?: string;
+    month?: string;
 }
 
 interface QuarterInputProps {
@@ -19,7 +19,8 @@ interface QuarterInputProps {
 
 export default (props: QuarterInputProps) => {
     const { value, onChange } = props;
-    const { dayOfMonth, hours, minutes, quarters } = value || {};
+    const { dayOfMonth = 1, hours = 0, minutes = 0, month = '3,6,9,12' } =
+        value || {};
 
     const triggerChange = (value: QuarterInputValue) => {
         onChange &&
@@ -29,8 +30,8 @@ export default (props: QuarterInputProps) => {
             });
     };
 
-    const onQuartersChange = (value: string) => {
-        triggerChange({ quarters: value });
+    const onMonthChange = (value: string) => {
+        triggerChange({ month: value });
     };
 
     const onDayOfMonthChange = (value: number) => {
@@ -50,8 +51,8 @@ export default (props: QuarterInputProps) => {
             <FormLabel label="选择月份">
                 <Select
                     style={{ width: '100%' }}
-                    value={quarters}
-                    onChange={onQuartersChange}
+                    value={month}
+                    onChange={onMonthChange}
                 >
                     <Select.Option value="3,6,9,12">第一个月</Select.Option>
                     <Select.Option value="4,7,10,1">第二个月</Select.Option>
