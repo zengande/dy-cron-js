@@ -34,8 +34,8 @@ import { Cron } from 'dy-cron-js';
 
 export default () => {
     const [value, SetValue] = useState({
-        cron: '00 43 10 ? * MON',
-        cycle: 'M',
+        cron: undefined,
+        cycle: 'H',
     });
     return (
         <Cron
